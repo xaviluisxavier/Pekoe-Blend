@@ -1,0 +1,41 @@
+<html lang="pt-PT">
+<head>
+
+
+
+
+</head>
+<body> 
+	<a href="home" class="logo">
+		<i class="logomarca"></i>
+		</a>
+	
+	
+	
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+        <link rel="stylesheet" href="css/login.css">
+			<div class="registro">
+				<form action="/auth" method="post">
+					<label for="chk" aria-hidden="true">Registro</label>
+					<input   autocomplete="off" type="text" name="nome" placeholder="Primeiro e Último Nome" required>
+					<input  type="email" name="email" placeholder="Email" required>
+					<input  type="password" name="pswd" placeholder="Palavra-passe" required>
+					<button type="submit">Registro</button> 
+				</form>
+			</div>
+
+			<div class="login">
+				<form action="/auth" method="post">
+                    
+					<label for="chk" aria-hidden="true">Login</label>
+					<input  type="email" name="email" placeholder="Email" required>
+					<input  type="password" name="pswd" placeholder="Palavra-passe" required>
+					<button type="submit">Login</button>
+				</form>
+			</div>
+	</div>
+
+</body>
+
+</html>

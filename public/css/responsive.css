@@ -1,0 +1,29 @@
+@media only screen and (max-width: 1110px){
+.center{
+    width: 980px;
+}
+.menu__li{
+    margin: 0 5px;
+}
+.bt-login{
+    margin-left: 15px;
+    padding: 5px 20px;
+}
+}
+@media only screen and (max-width: 980px){
+    .center{
+        width: 768px;
+    }
+}
+@media only screen and (max-width: 768px){
+    .center{
+        width: 640px;
+    }
+    
+}
+@media only screen and (max-width: 640px){
+    .center{
+        width: auto;
+        padding:  0 20px;
+    }
+}
