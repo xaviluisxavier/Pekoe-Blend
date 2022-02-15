@@ -18,22 +18,22 @@ function processChas(data){
   const cha = document.getElementById('cha')
   cha.innerHTML+= ''
   for(var i=0; i<data.length;i++){
-    let Nome = data[i].Nome
-    let Preco = data[i].Preco+"$"
-    let Imagem = data[i].Imagem
-    let Stock = data[i].Stock
+    let nome = data[i].nome
+    let preco = data[i].preco+"$"
+    let imagem = data[i].imagem
+    let stock = data[i].stock
     
     
     let row = `
     <div class="card">
-    <img src="${Imagem}" alt="" width="400" height="266">
-    <h1>${Nome}</h1>
-    <p class="price">${Preco}</p>
+    <img src="${imagem}" alt="" width="400" height="266">
+    <h1>${nome}</h1>
+    <p class="price">${preco}</p>
     
-    <p><button onclick="adicionarCarrinho('${data[i].Nome}','${data[i].Preco}','${data[i].Imagem}')"type="button" data-toggle="modal" data-target="#cartModal" >Comprar</button></p>
+    <p><button onclick="adicionarCarrinho('${data[i].nome}','${data[i].preco}','${data[i].imagem}')"type="button" data-toggle="modal" data-target="#cartModal" >Comprar</button></p>
     
     
-    <button onclick="showDetail('${data[i].Descricao}','${data[i].Stock}','${data[i].Nome}')" type="button" class="price" data-toggle="modal" data-target="#myModal">Detalhe</button>   
+    <button onclick="showDetail('${data[i].descricao}','${data[i].stock}','${data[i].nome}')" type="button" class="price" data-toggle="modal" data-target="#myModal">Detalhe</button>   
   </div>
   
     
@@ -73,8 +73,8 @@ function processChas(data){
     }
 
 
-    function adicionarCarrinho(Nome,Preco,Imagem){
-      precoProd = Preco;
+    function adicionarCarrinho(nome,preco,imagem){
+      precoProd = preco;
       const carrinho = document.getElementById('carrinho')
       carrinho.innerHTML+= ''
 
@@ -105,11 +105,11 @@ function processChas(data){
           </thead>
           <tbody>
             <tr>
-              <td class="w-25"><img src="${Imagem}" class="img-fluid img-thumbnail"  ></td>
-              <td>${Nome}</td>
-              <td id="Preco">${Preco}$</td>
+              <td class="w-25"><img src="${imagem}" class="img-fluid img-thumbnail"  ></td>
+              <td>${nome}</td>
+              <td id="Preco">${preco}$</td>
               <td> <input id="numeroDigitado" type="number"  min="1" class="form-control" value="1" onchange="TotalizacaoCompra(capturando,precoProd)" ></td>
-              <td class="price text-success" id="total">${Preco+"$"}</td>
+              <td class="price text-success" id="total">${preco+"$"}</td>
               <td>
                 <a data-bs-dismiss="modal" class="btn btn-danger btn-sm">
                   <i class="fa fa-times"></i>
@@ -148,6 +148,7 @@ function TotalizacaoCompra(){
 document.getElementById('total').innerHTML = capturando.toFixed(2)+"$"
 
 }
+
 
 
 

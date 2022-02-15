@@ -34,15 +34,15 @@ function processTabelaUser(data){
     tabelaUser.innerHTML=''
     for(var i=0; i<data.length;i++){
         
-        let Nomeuser = data[i].Nomeuser
-        let Email = data[i].Email
-        let Senha = data[i].Senha
+        let nome_user = data[i].nome_user
+        let email = data[i].email
+        let senha = data[i].senha
         
         
         let row = `<tr>
-                    <td>${Nomeuser}</td>
-                    <td>${Email}</td>
-                    <td>${Senha}</td>
+                    <td>${nome_user}</td>
+                    <td>${email}</td>
+                    <td>${senha}</td>
                     <td>
                     <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>Editar</button>
               <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>Adicionar</button>

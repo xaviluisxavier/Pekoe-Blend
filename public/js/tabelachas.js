@@ -32,15 +32,15 @@ function verChas(){
         const tabela = document.getElementById('tabela')
         tabela.innerHTML=''
         for(var i=0; i<data.length;i++){
-            let Nome = data[i].Nome
-            let Preco = data[i].Preco
-            let Descricao = data[i].Descricao
+            let nome = data[i].nome
+            let preco = data[i].preco
+            let descricao = data[i].descricao
             
             
             let row = `<tr>
-                        <td >${Nome}</td>
-                        <td>${Preco}</td>
-                        <td>${Descricao}</td>
+                        <td >${nome}</td>
+                        <td>${preco}</td>
+                        <td>${descricao}</td>
                         <td>
                     <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>Editar</button>
               <button type="button" class="btn btn-success"><i class="fas fa-edit"></i>Adicionar</button>
