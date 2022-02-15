@@ -1,14 +1,14 @@
 const express = require('express')
 , routes = require('./routes')
-, user = require('./routes/user');
-const bodyParser=require('body-parser')
-const path = require('path')
-const app = express()
-const port = 3000
-const connection = require('./public/js/dbconnection')
-const http = require('http')
-const cons = require('consolidate')
-const session = require('express-session');
+, user = require('./routes/user')
+, bodyParser=require('body-parser')
+, path = require('path')
+, app = express()
+, port = 3000
+, connection = require('./public/js/dbconnection')
+, http = require('http')
+, cons = require('consolidate')
+, session = require('express-session');
 require('dotenv').config()
 
 app.engine('html', cons.swig)
@@ -27,13 +27,12 @@ app.use(session({
   secret: 'xavi123',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 60000}
+  cookie: { maxAge: 100 * 30 * 1000}
 }))
 
 app.get('/', user.login);
 app.get('/registro', user.registro);//call for signup page
 app.post('/registro', user.registro);//call for signup post 
-app.get('/login', routes.index);//call for login page
 app.post('/login', user.login);//call for login post
 app.get('/home', user.home);
 app.get('/home/logout', user.logout);//call for logout

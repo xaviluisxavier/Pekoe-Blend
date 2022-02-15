@@ -1,12 +1,13 @@
 const connection = require("../public/js/dbconnection");
 
+
 //---------------------------------------------signup page call------------------------------------------------------
 exports.registro = function(req, res){
     message = '';
     if(req.method == "POST"){
        var post  = req.body;
        var nome= post.nome_user;
-       var senha= post.senha;
+       var senha= post.senha 
        var pnome= post.primeiro_nome;
        var unome= post.ultimo_nome;
        var email= post.email;
@@ -57,20 +58,20 @@ exports.registro = function(req, res){
             
  exports.dashboard = function(req, res, next){
             
-    var user =  req.session.user,
-    userId = req.session.userId;
-    console.log('ddd='+userId);
-    if(userId == null){
-       res.redirect("/login");
-       return;
-    }
- 
-    var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
- 
-    connection.query(sql, function(err, results){
-       res.render('dashboard.html', {user:user});    
-    });       
- };
+   var user =  req.session.user,
+   userId = req.session.userId;
+   console.log('ddd='+userId);
+   if(userId == null){
+      res.redirect("/login");
+      return;
+   }
+
+   var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+
+   connection.query(sql, function(err, results){
+      res.render('dashboard.html', {user:user});    
+   });       
+};
  //------------------------------------logout functionality----------------------------------------------
  exports.logout=function(req,res){
     req.session.destroy(function(err) {
@@ -118,3 +119,6 @@ exports.registro = function(req, res){
        res.render('home.html',{data:result});
     });
  };
+
+
+ 
