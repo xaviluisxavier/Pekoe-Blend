@@ -5,8 +5,8 @@ const express = require('express')
 , path = require('path')
 , app = express()
 , port = 3000
-, connection = require('./public/js/dbconnection')
 , http = require('http')
+, connection = require('./public/js/dbconnection')
 , cons = require('consolidate')
 , session = require('express-session');
 require('dotenv').config()

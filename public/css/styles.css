@@ -582,10 +582,7 @@ float: left;
   .footer-autor a{
     color: #2DA125;
   }
-  .swiper {
-    width: 600px;
-    height: 300px;
-  }
+  
 
   .scrollToTop {
     bottom: 14px;
@@ -608,6 +605,8 @@ float: left;
 .swiper {
     width: 600px;
     height: 450px;
+
+    
     
   }
 

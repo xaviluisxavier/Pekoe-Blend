@@ -149,6 +149,3 @@ document.getElementById('total').innerHTML = capturando.toFixed(2)+"$"
 
 }
 
-
-
-

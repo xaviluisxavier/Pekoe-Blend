@@ -1,7 +1,7 @@
 const connection = require("../public/js/dbconnection");
 
 
-//---------------------------------------------signup page call------------------------------------------------------
+//---------------------------------------------Registro------------------------------------------------------
 exports.registro = function(req, res){
     message = '';
     if(req.method == "POST"){
@@ -25,7 +25,7 @@ exports.registro = function(req, res){
     }
  };
   
- //-----------------------------------------------login page call------------------------------------------------------
+ //-----------------------------------------------Login------------------------------------------------------
  exports.login = function(req, res){
     var message = '';
     var sess = req.session; 
@@ -54,7 +54,8 @@ exports.registro = function(req, res){
     }
             
  };
- //-----------------------------------------------dashboard page functionality----------------------------------------------
+ 
+ //-----------------------------------------------DashBoard----------------------------------------------
             
  exports.dashboard = function(req, res, next){
             
@@ -72,13 +73,13 @@ exports.registro = function(req, res){
       res.render('dashboard.html', {user:user});    
    });       
 };
- //------------------------------------logout functionality----------------------------------------------
+ //------------------------------------Logout----------------------------------------------
  exports.logout=function(req,res){
     req.session.destroy(function(err) {
        res.redirect("/inicio");
     })
  };
- //--------------------------------render user details after login--------------------------------
+ //--------------------------------Route para a pagina Compra--------------------------------
  exports.comprar = function(req, res){
  
     var userId = req.session.userId;
@@ -92,7 +93,7 @@ exports.registro = function(req, res){
        res.render('comprar.html',{data:result});
     });
  };
- //---------------------------------edit users details after login----------------------------------
+ //---------------------------------Route para a pagina contacto----------------------------------
  exports.contacto = function(req, res){
  
     var userId = req.session.userId;
@@ -106,6 +107,9 @@ exports.registro = function(req, res){
        res.render('contacto.html',{data:result});
     });
  };
+
+
+ //---------------------------------Route para a pagina home----------------------------------
  exports.home = function(req, res){
  
     var userId = req.session.userId;
