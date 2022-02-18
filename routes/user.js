@@ -1,28 +1,35 @@
 const connection = require("../public/js/dbconnection");
-
+const bcrypt = require('bcrypt')
+const salt = require('salt')
 
 //---------------------------------------------Registro------------------------------------------------------
 exports.registro = function(req, res){
     message = '';
+
     if(req.method == "POST"){
+      
        var post  = req.body;
        var nome= post.nome_user;
-       var senha= post.senha 
+       var senha= post.senha;
        var pnome= post.primeiro_nome;
        var unome= post.ultimo_nome;
        var email= post.email;
+
+  
  
        var sql = "INSERT INTO `users`(`primeiro_nome`,`ultimo_nome`,`email`,`nome_user`, `senha`) VALUES ('" + pnome + "','" + unome + "','" + email + "','" + nome + "','" + senha + "')";
- 
+     
        var query = connection.query(sql, function(err, result) {
  
           message = "Succesfully! Your account has been created.";
           res.render('login.html',{message: message});
-       });
- 
+            });
+      
     } else {
+       console.log('error')
        res.render('registro');
     }
+   
  };
   
  //-----------------------------------------------Login------------------------------------------------------
