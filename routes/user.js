@@ -1,11 +1,9 @@
 const connection = require("../public/js/dbconnection");
-const bcrypt = require('bcrypt')
-const salt = require('salt')
+var bcrypt = require('bcrypt');
 
 //---------------------------------------------Registro------------------------------------------------------
 exports.registro = function(req, res){
-    message = '';
-
+  
     if(req.method == "POST"){
       
        var post  = req.body;
@@ -21,20 +19,20 @@ exports.registro = function(req, res){
      
        var query = connection.query(sql, function(err, result) {
  
-          message = "Succesfully! Your account has been created.";
-          res.render('login.html',{message: message});
+          
+          res.render('login.html');
             });
-      
+          
     } else {
        console.log('error')
        res.render('registro');
     }
-   
- };
+    
+   };
   
  //-----------------------------------------------Login------------------------------------------------------
  exports.login = function(req, res){
-    var message = '';
+    
     var sess = req.session; 
  
     if(req.method == "POST"){
@@ -51,13 +49,13 @@ exports.registro = function(req, res){
              res.redirect('/home');
           }
           else{
-             message = 'Wrong Credentials.';
-             res.render('login.html',{message: message});
+             
+             res.render('login.html');
           }
                   
        });
     } else {
-       res.render('login.html',{message: message});
+       res.render('login.html');
     }
             
  };

@@ -27,7 +27,7 @@ app.use(session({
   secret: 'xavi123',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 100 * 30 * 1000}
+  cookie: { maxAge: 30 * 60 * 1000}
 }))
 
 app.get('/', user.login);
