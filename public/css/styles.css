@@ -633,3 +633,8 @@ float: left;
     color:#2DA125;
 }
 
+
+a.editor-create {
+    display: inline-block;
+    margin-bottom: 0.5em;
+}

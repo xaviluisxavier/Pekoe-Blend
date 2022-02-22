@@ -14,26 +14,28 @@ require('dotenv').config()
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, '/public/views'));
 app.set('view engine', 'html');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/css', express.static(__dirname + './public/css'))
- app.use('/js', express.static(__dirname + './public/js'))
- app.use('/imagens', express.static(__dirname + './public/imagens'))
- app.use('/videos', express.static(__dirname + './public/imagens'))
+
+
 app.use(express.static('./public'))
+
+
 app.use('/chas',require('./routes/getChasRoutes'))
 app.use('/tabela',require('./routes/getTabelaRoutes'))
+
 app.use(session({
   secret: 'xavi123',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 30 * 60 * 1000}
+  cookie: { maxAge: 30 * 30 * 60 * 1000}
 }))
 
 app.get('/', user.login);
+app.post('/login', user.login);//call for login post
 app.get('/registro', user.registro);//call for signup page
 app.post('/registro', user.registro);//call for signup post 
-app.post('/login', user.login);//call for login post
 app.get('/home', user.home);
 app.get('/home/logout', user.logout);//call for logout
 app.get('/home/comprar', user.comprar);

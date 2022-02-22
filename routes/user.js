@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 
 //---------------------------------------------Registro------------------------------------------------------
 exports.registro = function(req, res){
-  
+   
     if(req.method == "POST"){
       
        var post  = req.body;
@@ -13,7 +13,7 @@ exports.registro = function(req, res){
        var unome= post.ultimo_nome;
        var email= post.email;
 
-  
+
  
        var sql = "INSERT INTO `users`(`primeiro_nome`,`ultimo_nome`,`email`,`nome_user`, `senha`) VALUES ('" + pnome + "','" + unome + "','" + email + "','" + nome + "','" + senha + "')";
      
@@ -24,16 +24,15 @@ exports.registro = function(req, res){
             });
           
     } else {
-       console.log('error')
        res.render('registro');
     }
-    
+   
    };
   
  //-----------------------------------------------Login------------------------------------------------------
  exports.login = function(req, res){
     
-    var sess = req.session; 
+ 
  
     if(req.method == "POST"){
        var post  = req.body;
@@ -57,7 +56,7 @@ exports.registro = function(req, res){
     } else {
        res.render('login.html');
     }
-            
+    
  };
  
  //-----------------------------------------------DashBoard----------------------------------------------
@@ -66,9 +65,8 @@ exports.registro = function(req, res){
             
    var user =  req.session.user,
    userId = req.session.userId;
-   console.log('ddd='+userId);
    if(userId == null){
-      res.redirect("/login");
+      res.redirect("/home/dashboard");
       return;
    }
 
@@ -128,6 +126,3 @@ exports.registro = function(req, res){
        res.render('home.html',{data:result});
     });
  };
-
-
- 

@@ -17,7 +17,7 @@ function verTabelaUser(){
 function processTabelaUser(data){
     console.log(data)
   
-    const cab = document.getElementById('cab1')
+    const cab = document.getElementById('cab')
     cab.innerHTML+=`
   
     <thead>
@@ -25,7 +25,6 @@ function processTabelaUser(data){
     <th scope="col">User ID</th>
       <th scope="col">Nome User</th>
       <th scope="col">Email</th>
-      <th scope="col">Senhas</th>
       <th scope="col">Ações</th>
 
     </tr>
@@ -37,7 +36,7 @@ function processTabelaUser(data){
         let id = data[i].id
         let nome_user = data[i].nome_user
         let email = data[i].email
-        let senha = data[i].senha
+        
         
         
         let row = `<tr>
@@ -45,11 +44,11 @@ function processTabelaUser(data){
 
                     <td>${nome_user}</td>
                     <td>${email}</td>
-                    <td>${senha}</td>
+                    
                     <td>
-                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>Editar</button>
+                    <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
               
-            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Remover</button>
+            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
           
                    </tr>

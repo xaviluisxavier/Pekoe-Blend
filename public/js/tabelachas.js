@@ -3,8 +3,6 @@
 function verChas(){
     fetch('http://localhost:3000/chas')
     .then(res => res.json())
-   
-    
     .then(data => processTabela(data))
     
     .catch((err)=>{
@@ -18,9 +16,9 @@ function verChas(){
   
       function processTabela(data){
         console.log(data)
-        const cab = document.getElementById('cab')
+        const cab = document.getElementById('cab1')
         cab.innerHTML+=`
-            <thead border="1">
+            <thead>
                 <tr>
                 <th scope="col">Cha ID</th>
                 <th scope="col">Nome</th>
@@ -42,11 +40,12 @@ function verChas(){
             let row = `<tr>
                         <td >${chaid}</td>
                         <td >${nome}</td>
-                        <td>${preco}</td>
+                        <td>${preco+"$"}</td>
                         <td>${descricao}</td>
                         <td>
-                    <button type="button" class="btn btn-primary"><i class="far fa-eye"></i>Editar</button>
-            <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i>Remover</button>
+                  
+                        <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                      <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
                       
                        </tr>
@@ -54,4 +53,6 @@ function verChas(){
             tabela.innerHTML += row
         }
     }
-    
+
+
+   
