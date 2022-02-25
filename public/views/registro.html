@@ -6,13 +6,14 @@
    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
    <script src=”sweetalert-dev.js”></script>
    <link rel=”stylesheet” href=”sweetalert.css”>
-  
+   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   
     
 </head>
 <body>
     
     <div class="container col-sm-12" id="mainform">
-            <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div id="registro" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                                                            
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -20,36 +21,36 @@
                             <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/">Login</a></div>
                         </div> 
                         <div class="panel-body" >
-                            <form class="form-horizontal" role="form" method="post" action="/registro">
+                            <form name="registro" class="form-horizontal" role="form" method="post">
                             
                               
                                     
                                 <div class="form-group">
-                                    <label for="first_name" class="col-md-3 control-label">Primeiro Nome</label>
+                                    <label for="primeiro_nome" class="col-md-3 control-label">Primeiro Nome</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="primeiro_nome" placeholder="Primeiro Nome" id="roll-input" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="last_name" class="col-md-3 control-label">Ultimo Nome</label>
+                                    <label for="ultimo_nome" class="col-md-3 control-label">Ultimo Nome</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="ultimo_nome" placeholder="Ultimo Nome" >
                                     </div>
                                 </div>
                                                                                                 <div class="form-group">
-                                    <label for="mob_no" class="col-md-3 control-label">Email</label>
+                                    <label for="email" class="col-md-3 control-label">Email</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="email" placeholder="Email" required>
                                     </div>
                                 </div>
                                                                                                 <div class="form-group">
-                                    <label for="user_name" class="col-md-3 control-label">Nome user</label>
+                                    <label for="nome_user" class="col-md-3 control-label">Nome user</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="nome_user" placeholder="Nome user" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password" class="col-md-3 control-label">Senha</label>
+                                    <label for="senha" class="col-md-3 control-label">Senha</label>
                                     <div class="col-md-9">
                                         <input type="password" class="form-control" name="senha" placeholder="Senha" required>
                                     </div>
@@ -59,7 +60,7 @@
                                                             
                                     <div class="col-md-offset-3 col-md-9">
                                         
-                                        <button  id="btn-signup" type="submit" class="btn btn-success"><i class="icon-hand-right"></i>Registro</button>
+                                        <button  id="btn-signup" type="submit" class="btn btn-success"  ><i class="icon-hand-right" ></i>Registro</button>
                                         
                                     </div>
                                 </div>
@@ -74,6 +75,7 @@
                 
          </div>
     </div>
+    
 
 </body>
 </html>

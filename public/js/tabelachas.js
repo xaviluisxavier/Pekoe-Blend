@@ -44,7 +44,7 @@ function verChas(){
                         <td>${descricao}</td>
                         <td>
                   
-                        <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                        <button onclick="showEditar('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                       <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
                       
@@ -54,5 +54,31 @@ function verChas(){
         }
     }
 
-
+    function showEditar(id,nome,preco,desc){
+    
+        const editar = document.getElementById('editar')
+        editar.innerHTML+= ''
+        modelWrap = document.createElement('div')
+        modelWrap.innerHTML = 
+            `
+          <div class="modal">
+                    <div class="modal-dialog modal-l">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Editar o chá com o id: ${id}</h5>
+                        </div>
+                        <div class="modal-body" ">
+                        
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+          `
+          document.body.append(modelWrap)
+        var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
+        modal.show()
+        }
    

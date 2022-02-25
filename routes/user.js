@@ -1,27 +1,29 @@
 const connection = require("../public/js/dbconnection");
-var bcrypt = require('bcrypt');
+var bcryptjs = require('bcryptjs');
 
 //---------------------------------------------Registro------------------------------------------------------
 exports.registro = function(req, res){
    
     if(req.method == "POST"){
-      
+     
        var post  = req.body;
        var nome= post.nome_user;
-       var senha= post.senha;
        var pnome= post.primeiro_nome;
        var unome= post.ultimo_nome;
+       var senha = post.senha;
        var email= post.email;
 
-
- 
        var sql = "INSERT INTO `users`(`primeiro_nome`,`ultimo_nome`,`email`,`nome_user`, `senha`) VALUES ('" + pnome + "','" + unome + "','" + email + "','" + nome + "','" + senha + "')";
      
        var query = connection.query(sql, function(err, result) {
- 
-          
-          res.render('login.html');
+         
+         
+         res.render('login.html');
+         
+           
             });
+         
+   
           
     } else {
        res.render('registro');
@@ -32,8 +34,7 @@ exports.registro = function(req, res){
  //-----------------------------------------------Login------------------------------------------------------
  exports.login = function(req, res){
     
- 
- 
+
     if(req.method == "POST"){
        var post  = req.body;
        var nome= post.nome_user;

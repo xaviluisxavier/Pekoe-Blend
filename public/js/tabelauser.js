@@ -46,7 +46,7 @@ function processTabelaUser(data){
                     <td>${email}</td>
                     
                     <td>
-                    <button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                    <button onclick="showEditar('${data[i].id}','${data[i].nome_user}','${data[i].email}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
               
             <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
@@ -58,3 +58,30 @@ function processTabelaUser(data){
     }
 }
 
+function showEditar(id,nome,email){
+    
+  const editaruser = document.getElementById('editaruser')
+  editaruser.innerHTML+= ''
+  modelWrap = document.createElement('div')
+  modelWrap.innerHTML = 
+      `
+    <div class="modal">
+              <div class="modal-dialog modal-l">
+                  <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title">Editar o User com o id: ${id}</h5>
+                  </div>
+                  <div class="modal-body" ">
+                  
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                  </div>
+              </div>
+              </div>
+    `
+    document.body.append(modelWrap)
+  var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
+  modal.show()
+  }
