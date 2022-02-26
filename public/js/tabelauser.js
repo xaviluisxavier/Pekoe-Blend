@@ -46,7 +46,7 @@ function processTabelaUser(data){
                     <td>${email}</td>
                     
                     <td>
-                    <button onclick="showEditar('${data[i].id}','${data[i].nome_user}','${data[i].email}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                    <button onclick="showEditarUsers('${data[i].id}','${data[i].nome_user}','${data[i].email}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
               
             <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
@@ -58,7 +58,7 @@ function processTabelaUser(data){
     }
 }
 
-function showEditar(id,nome,email){
+function showEditarUsers(id,nome,email){
     
   const editaruser = document.getElementById('editaruser')
   editaruser.innerHTML+= ''

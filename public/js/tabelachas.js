@@ -28,7 +28,7 @@ function verChas(){
                 </tr>
             </thead>
         `
-        const tabela = document.getElementById('tabela')
+        const tabela = document.getElementById('tabelachas')
         tabela.innerHTML=''
         for(var i=0; i<data.length;i++){
             let chaid = data[i].chaid
@@ -44,7 +44,7 @@ function verChas(){
                         <td>${descricao}</td>
                         <td>
                   
-                        <button onclick="showEditar('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                        <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                       <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
                       
@@ -54,9 +54,9 @@ function verChas(){
         }
     }
 
-    function showEditar(id,nome,preco,desc){
+    function showEditarChas(id,nome,preco,desc){
     
-        const editar = document.getElementById('editar')
+        const editar = document.getElementById('editarcha')
         editar.innerHTML+= ''
         modelWrap = document.createElement('div')
         modelWrap.innerHTML = 
@@ -68,7 +68,27 @@ function verChas(){
                             <h5 class="modal-title">Editar o chá com o id: ${id}</h5>
                         </div>
                         <div class="modal-body" ">
+                        <form>
                         
+                          <div class="form-group col-md-6">
+                            <label for="nomecha">Nome do Chá</label>
+                            <input type="nomecha" class="form-control" id="nomecha" placeholder="Nome">
+                            
+                          </div>
+
+                          <div class="form-group col-md-6">
+                            <label for="preco">Preço</label>
+                            <input type="preco" class="form-control" id="preco" placeholder="Preço">
+                       
+                          </div>
+                       
+
+                        <div class="form-group col-md-12">
+                        <label for="descricao">Descrição</label>
+                        <textarea class="form-control" id="descricao">${desc}</textarea>
+                      </div>
+                        
+                      </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

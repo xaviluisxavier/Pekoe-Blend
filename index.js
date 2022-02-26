@@ -29,18 +29,18 @@ app.use(session({
   secret: 'xavi123',
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 30 * 30 * 60 * 1000}
+  cookie: { maxAge: 30 * 60 * 100 * 10} // 30 minutos 
 }))
 
-app.get('/', user.login);
-app.post('/login', user.login);//call for login post
-app.get('/registro', user.registro);//call for signup page
-app.post('/registro', user.registro);//call for signup post 
-app.get('/home', user.home);
-app.get('/home/logout', user.logout);//call for logout
-app.get('/home/comprar', user.comprar);
-app.get('/home/contacto', user.contacto);
-app.get('/home/dashboard', user.dashboard);
+app.get('/', user.login);//chama a pagina de login
+app.post('/login', user.login);//chama o  login post
+app.get('/registro', user.registro);//chama a pagina de registro
+app.post('/registro', user.registro);//chama o registro post
+app.get('/home', user.home);//chama a pagina inicial após o login
+app.get('/home/logout', user.logout);//faz o logout 
+app.get('/home/comprar', user.comprar);//chama a pagina de comprar somente depois de ter feito o login
+app.get('/home/contacto', user.contacto);//chama a pagina de contacto somente depois de ter feito o login
+app.get('/home/dashboard', user.dashboard);//chama a pagina de dashboard somente depois de ter feito o login
 
 
 
