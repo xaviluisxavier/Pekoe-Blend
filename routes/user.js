@@ -49,7 +49,7 @@ exports.login = function (req, res) {
             res.render('login.html');
          }
          else {
-            req.session.userId = result[0].id;
+         
             req.session.user = result[0];
             console.log(result[0].id);
             res.redirect('/home');
