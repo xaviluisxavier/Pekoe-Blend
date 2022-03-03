@@ -1,7 +1,7 @@
 const connection = require("../public/js/dbconnection");
 var bcrypt = require('bcryptjs');
 
-//---------------------------------------------Registro------------------------------------------------------
+//---------------------------------------------Registo------------------------------------------------------
 exports.registo = function (req, res) {
    //bcrypt.hash('senha', 5, function( err, bcryptedPassword) {
 
@@ -14,17 +14,17 @@ exports.registo = function (req, res) {
       var pnome = post.primeiro_nome;
       var unome = post.ultimo_nome;
       var email = post.email;
-      
+
       connection.query('INSERT INTO users (primeiro_nome,ultimo_nome,email,nome_user,senha) VALUES (?,?,?,?,?)',
-         [pnome,unome,email,nome,encPass],
+         [pnome, unome, email, nome, encPass],
          (error, result) => {
-            if(error) throw error
-            if(result){
-              res.render('login')
+            if (error) throw error
+            if (result) {
+               res.render('login')
             }
          })
    } else {
-      res.render('registro');
+      res.render('registo');
    }
 };
 
@@ -38,25 +38,26 @@ exports.login = function (req, res) {
       var nome = post.nome_user;
       var senha = post.senha
 
-     
-      connection.query('SELECT * FROM  users  WHERE nome_user = ?',
-      [nome],
-      (error, result) => {
-         let user = result[0]
-         if(error) throw error
-         if (!user || !bcrypt.compareSync(senha,user.senha)) {
-            
-            res.render('login.html');
-         }
-         else {
-         
-            req.session.user = result[0];
-            console.log(result[0].id);
-            res.redirect('/home');
-           
-         }
 
-      });
+      connection.query('SELECT * FROM  users  WHERE nome_user = ?',
+         [nome],
+         (error, result) => {
+            let user = result[0]
+            if (error) throw error
+            if (!user || !bcrypt.compareSync(senha, user.senha)) {
+
+               res.render('login.html');
+            }
+            else {
+
+               req.session.userId = result[0].id;
+               req.session.user = result[0];
+               console.log(result[0].id);
+               res.redirect('/home');
+
+            }
+
+         });
    } else {
       res.render('login.html');
    }
@@ -74,11 +75,12 @@ exports.dashboard = function (req, res, next) {
       return;
    }
 
-   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
 
-   connection.query(sql, function (err, results) {
-      res.render('dashboard.html', { user: user });
-   });
+
+   connection.query('SELECT * FROM users WHERE id = ?', [userId],
+      function (err, results) {
+         res.render('dashboard.html', { user: user });
+      });
 };
 //------------------------------------Logout----------------------------------------------
 exports.logout = function (req, res) {
@@ -95,10 +97,11 @@ exports.comprar = function (req, res) {
       return;
    }
 
-   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
-   connection.query(sql, function (err, result) {
-      res.render('comprar.html', { data: result });
-   });
+
+   connection.query('SELECT * FROM users WHERE id = ?', [userId],
+      function (err, result) {
+         res.render('comprar.html', { data: result });
+      });
 };
 //---------------------------------Route para a pagina contacto----------------------------------
 exports.contacto = function (req, res) {
@@ -109,10 +112,11 @@ exports.contacto = function (req, res) {
       return;
    }
 
-   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
-   connection.query(sql, function (err, result) {
-      res.render('contacto.html', { data: result });
-   });
+
+   connection.query('SELECT * FROM users WHERE id = ?', [userId],
+      function (err, result) {
+         res.render('contacto.html', { data: result });
+      });
 };
 
 
@@ -124,11 +128,11 @@ exports.home = function (req, res) {
       res.redirect("/home");
       return;
    }
+   connection.query('SELECT * FROM users WHERE id = ?', [userId],
 
-   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
-   connection.query(sql, function (err, result) {
-      res.render('home.html', { data: result });
-   });
+      function (err, result) {
+         res.render('home.html', { data: result });
+      });
 };
 
 
