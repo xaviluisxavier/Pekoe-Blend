@@ -34,8 +34,8 @@ app.use(session({
 
 app.get('/', user.login);//chama a pagina de login
 app.post('/login', user.login);//chama o  login post
-app.get('/registro', user.registro);//chama a pagina de registro
-app.post('/registro', user.registro);//chama o registro post
+app.get('/registro', user.registo);//chama a pagina de registro
+app.post('/registro', user.registo);//chama o registro post
 app.get('/home', user.home);//chama a pagina inicial após o login
 app.get('/home/logout', user.logout);//faz o logout 
 app.get('/home/comprar', user.comprar);//chama a pagina de comprar somente depois de ter feito o login

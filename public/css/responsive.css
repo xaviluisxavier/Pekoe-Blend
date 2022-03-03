@@ -9,11 +9,17 @@
     margin-left: 15px;
     padding: 5px 20px;
 }
+
+.cha{
+    width: 400px;
+
+}
 }
 @media only screen and (max-width: 980px){
     .center{
         width: 768px;
     }
+   
 }
 @media only screen and (max-width: 768px){
     .center{
@@ -25,5 +31,10 @@
     .center{
         width: auto;
         padding:  0 20px;
+    }
+    .cha{
+        width: 350px;
+        height: 400px;
+      
     }
 }

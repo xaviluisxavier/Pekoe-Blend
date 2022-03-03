@@ -1,129 +1,134 @@
 const connection = require("../public/js/dbconnection");
-var bcryptjs = require('bcryptjs');
+var bcrypt = require('bcryptjs');
 
 //---------------------------------------------Registro------------------------------------------------------
-exports.registro = function(req, res){
-   
-    if(req.method == "POST"){
-     
-       var post  = req.body;
-       var nome= post.nome_user;
-       var pnome= post.primeiro_nome;
-       var unome= post.ultimo_nome;
-       var senha = post.senha;
-       var email= post.email;
+exports.registo = function (req, res) {
+   //bcrypt.hash('senha', 5, function( err, bcryptedPassword) {
 
-       var sql = "INSERT INTO `users`(`primeiro_nome`,`ultimo_nome`,`email`,`nome_user`, `senha`) VALUES ('" + pnome + "','" + unome + "','" + email + "','" + nome + "','" + senha + "')";
-     
-       var query = connection.query(sql, function(err, result) {
-         
-         
-         res.render('login.html');
-         
-           
-            });
-         
-   
-          
-    } else {
-       res.render('registro');
-    }
-   
-   };
-  
- //-----------------------------------------------Login------------------------------------------------------
- exports.login = function(req, res){
-    
-
-    if(req.method == "POST"){
-       var post  = req.body;
-       var nome= post.nome_user;
-       var senha= post.senha;
+   if (req.method == "POST") {
+      console.log(req.body.senha)
+      let encPass = bcrypt.hashSync(req.body.senha, bcrypt.genSaltSync(2))
+      console.log(encPass)
+      var post = req.body;
+      var nome = post.nome_user;
+      var pnome = post.primeiro_nome;
+      var unome = post.ultimo_nome;
+      var email = post.email;
       
-       var sql="SELECT id, primeiro_nome, ultimo_nome, nome_user FROM `users` WHERE `nome_user`='"+nome+"' and senha = '"+senha+"'";                           
-       connection.query(sql, function(err, results){      
-          if(results.length){
-             req.session.userId = results[0].id;
-             req.session.user = results[0];
-             console.log(results[0].id);
-             res.redirect('/home');
-          }
-          else{
-             
-             res.render('login.html');
-          }
-                  
-       });
-    } else {
-       res.render('login.html');
-    }
-    
- };
- 
- //-----------------------------------------------DashBoard----------------------------------------------
-            
- exports.dashboard = function(req, res, next){
-            
-   var user =  req.session.user,
-   userId = req.session.userId;
-   if(userId == null){
+      connection.query('INSERT INTO users (primeiro_nome,ultimo_nome,email,nome_user,senha) VALUES (?,?,?,?,?)',
+         [pnome,unome,email,nome,encPass],
+         (error, result) => {
+            if(error) throw error
+            if(result){
+              res.render('login')
+            }
+         })
+   } else {
+      res.render('registro');
+   }
+};
+
+
+//-----------------------------------------------Login------------------------------------------------------
+exports.login = function (req, res) {
+
+
+   if (req.method == "POST") {
+      var post = req.body;
+      var nome = post.nome_user;
+      var senha = post.senha;
+
+     
+      connection.query('SELECT * FROM  users  WHERE nome_user = ?',
+      [nome],
+      (error, result) => {
+         let user = result[0]
+         if(error) throw error
+         if (!user || !bcrypt.compareSync(senha,user.senha)) {
+   
+            res.json({
+               msg:'Username ou password incorreta'
+           })
+         }else{
+
+            res.render('home')
+         }
+         
+         
+
+      });
+   } else {
+      res.render('login');
+   }
+
+};
+
+//-----------------------------------------------DashBoard----------------------------------------------
+
+exports.dashboard = function (req, res, next) {
+
+   var user = req.session.user,
+      userId = req.session.userId;
+   if (userId == null) {
       res.redirect("/home/dashboard");
       return;
    }
 
-   var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";
+   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
 
-   connection.query(sql, function(err, results){
-      res.render('dashboard.html', {user:user});    
-   });       
+   connection.query(sql, function (err, results) {
+      res.render('dashboard.html', { user: user });
+   });
 };
- //------------------------------------Logout----------------------------------------------
- exports.logout=function(req,res){
-    req.session.destroy(function(err) {
-       res.redirect("/inicio");
-    })
- };
- //--------------------------------Route para a pagina Compra--------------------------------
- exports.comprar = function(req, res){
- 
-    var userId = req.session.userId;
-    if(userId == null){
-       res.redirect("/home/comprar");
-       return;
-    }
- 
-    var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";          
-    connection.query(sql, function(err, result){  
-       res.render('comprar.html',{data:result});
-    });
- };
- //---------------------------------Route para a pagina contacto----------------------------------
- exports.contacto = function(req, res){
- 
-    var userId = req.session.userId;
-    if(userId == null){
-       res.redirect("/home/contacto");
-       return;
-    }
- 
-    var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";          
-    connection.query(sql, function(err, result){  
-       res.render('contacto.html',{data:result});
-    });
- };
+//------------------------------------Logout----------------------------------------------
+exports.logout = function (req, res) {
+   req.session.destroy(function (err) {
+      res.redirect("/inicio");
+   })
+};
+//--------------------------------Route para a pagina Compra--------------------------------
+exports.comprar = function (req, res) {
+
+   var userId = req.session.userId;
+   if (userId == null) {
+      res.redirect("/home/comprar");
+      return;
+   }
+
+   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+   connection.query(sql, function (err, result) {
+      res.render('comprar.html', { data: result });
+   });
+};
+//---------------------------------Route para a pagina contacto----------------------------------
+exports.contacto = function (req, res) {
+
+   var userId = req.session.userId;
+   if (userId == null) {
+      res.redirect("/home/contacto");
+      return;
+   }
+
+   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+   connection.query(sql, function (err, result) {
+      res.render('contacto.html', { data: result });
+   });
+};
 
 
- //---------------------------------Route para a pagina home----------------------------------
- exports.home = function(req, res){
- 
-    var userId = req.session.userId;
-    if(userId == null){
-       res.redirect("/home");
-       return;
-    }
- 
-    var sql="SELECT * FROM `users` WHERE `id`='"+userId+"'";          
-    connection.query(sql, function(err, result){  
-       res.render('home.html',{data:result});
-    });
- };
+//---------------------------------Route para a pagina home----------------------------------
+exports.home = function (req, res) {
+
+   var userId = req.session.userId;
+   if (userId == null) {
+      res.redirect("/home");
+      return;
+   }
+
+   var sql = "SELECT * FROM `users` WHERE `id`='" + userId + "'";
+   connection.query(sql, function (err, result) {
+      res.render('home.html', { data: result });
+   });
+};
+
+
