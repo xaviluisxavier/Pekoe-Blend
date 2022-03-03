@@ -1,24 +1,24 @@
 
 
-function verTabelaUser(){
-    fetch('http://localhost:3000/tabela')
+function verTabelaUser() {
+  fetch('http://localhost:3000/tabela')
     .then(res => res.json())
-   
-    
+
+
     .then(data => processTabelaUser(data))
-    
-    .catch((err)=>{
-        alert('Ocorreu um problema...')
-        console.log(err)
+
+    .catch((err) => {
+      alert('Ocorreu um problema...')
+      console.log(err)
     })
-  }
+}
 
 
-function processTabelaUser(data){
-    console.log(data)
-  
-    const cab = document.getElementById('cab')
-    cab.innerHTML+=`
+function processTabelaUser(data) {
+  console.log(data)
+
+  const cab = document.getElementById('cab')
+  cab.innerHTML += `
   
     <thead>
     <tr>
@@ -30,16 +30,16 @@ function processTabelaUser(data){
     </tr>
   </thead>
     `
-    const tabelaUser = document.getElementById('tabelaUser')
-    tabelaUser.innerHTML=''
-    for(var i=0; i<data.length;i++){
-        let id = data[i].id
-        let nome_user = data[i].nome_user
-        let email = data[i].email
-        
-        
-        
-        let row = `<tr>
+  const tabelaUser = document.getElementById('tabelaUser')
+  tabelaUser.innerHTML = ''
+  for (var i = 0; i < data.length; i++) {
+    let id = data[i].id
+    let nome_user = data[i].nome_user
+    let email = data[i].email
+
+
+
+    let row = `<tr>
         <td>${id}</td>
 
                     <td>${nome_user}</td>
@@ -54,17 +54,17 @@ function processTabelaUser(data){
                    </tr>
                    
                    `
-        tabelaUser.innerHTML += row
-    }
+    tabelaUser.innerHTML += row
+  }
 }
 
-function showEditarUsers(id,nome,email){
-    
+function showEditarUsers(id, nome, email) {
+
   const editaruser = document.getElementById('editaruser')
-  editaruser.innerHTML+= ''
+  editaruser.innerHTML += ''
   modelWrap = document.createElement('div')
-  modelWrap.innerHTML = 
-      `
+  modelWrap.innerHTML =
+    `
     <div class="modal">
               <div class="modal-dialog modal-l">
                   <div class="modal-content">
@@ -81,7 +81,7 @@ function showEditarUsers(id,nome,email){
               </div>
               </div>
     `
-    document.body.append(modelWrap)
+  document.body.append(modelWrap)
   var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
   modal.show()
-  }
+}

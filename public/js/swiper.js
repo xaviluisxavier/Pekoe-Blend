@@ -1,16 +1,16 @@
 const swiper = new Swiper('.swiper', {
-    loop: true,
+  loop: true,
 
-pagination: {
-        el: ".swiper-pagination",
-        type: "fraction",
-      },
+  pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+  },
 
 
-navigation: {
-  nextEl: '.swiper-button-next',
-  prevEl: '.swiper-button-prev',
-},
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
 });
 
 

@@ -36,7 +36,7 @@ exports.login = function (req, res) {
    if (req.method == "POST") {
       var post = req.body;
       var nome = post.nome_user;
-      var senha = post.senha;
+      var senha = post.senha
 
      
       connection.query('SELECT * FROM  users  WHERE nome_user = ?',
@@ -45,20 +45,20 @@ exports.login = function (req, res) {
          let user = result[0]
          if(error) throw error
          if (!user || !bcrypt.compareSync(senha,user.senha)) {
-   
-            res.json({
-               msg:'Username ou password incorreta'
-           })
-         }else{
-
-            res.render('home')
+            
+            res.render('login.html');
          }
-         
-         
+         else {
+            req.session.userId = result[0].id;
+            req.session.user = result[0];
+            console.log(result[0].id);
+            res.redirect('/home');
+           
+         }
 
       });
    } else {
-      res.render('login');
+      res.render('login.html');
    }
 
 };

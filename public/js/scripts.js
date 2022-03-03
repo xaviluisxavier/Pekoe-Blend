@@ -1,29 +1,29 @@
-var capturando=0.0;
-let precoProd=0.0;
+var capturando = 0.0;
+let precoProd = 0.0;
 
-function verchas(){
+function verchas() {
   fetch('http://localhost:3000/chas')
-  .then(res => res.json())
-  .then(data => processChas(data))
-  .catch((err)=>{
+    .then(res => res.json())
+    .then(data => processChas(data))
+    .catch((err) => {
       alert('Ocorreu um problema...')
       console.log(err)
-  })
+    })
 }
 
 
 
-function processChas(data){
+function processChas(data) {
   console.log(data)
   const cha = document.getElementById('cha')
-  cha.innerHTML+= ''
-  for(var i=0; i<data.length;i++){
+  cha.innerHTML += ''
+  for (var i = 0; i < data.length; i++) {
     let nome = data[i].nome
-    let preco = data[i].preco+"$"
+    let preco = data[i].preco + "$"
     let imagem = data[i].imagem
     let stock = data[i].stock
-    
-    
+
+
     let row = `
     <div class="card">
     <img src="${imagem}" alt="" width="400" height="266">
@@ -39,17 +39,17 @@ function processChas(data){
     
    `
     cha.innerHTML += row
-    }
   }
+}
 
-  
-  function showDetail(desc,stock,nome){
-    
-    const detalhe = document.getElementById('detalhe')
-    detalhe.innerHTML+= ''
-    modelWrap = document.createElement('div')
-    modelWrap.innerHTML = 
-        `
+
+function showDetail(desc, stock, nome) {
+
+  const detalhe = document.getElementById('detalhe')
+  detalhe.innerHTML += ''
+  modelWrap = document.createElement('div')
+  modelWrap.innerHTML =
+    `
       <div class="modal">
                 <div class="modal-dialog modal-l">
                     <div class="modal-content">
@@ -67,21 +67,21 @@ function processChas(data){
                 </div>
                 </div>
       `
-      document.body.append(modelWrap)
-    var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
-    modal.show()
-    }
+  document.body.append(modelWrap)
+  var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
+  modal.show()
+}
 
 
-    function adicionarCarrinho(nome,preco,imagem){
-      precoProd = preco;
-      const carrinho = document.getElementById('carrinho')
-      carrinho.innerHTML+= ''
+function adicionarCarrinho(nome, preco, imagem) {
+  precoProd = preco;
+  const carrinho = document.getElementById('carrinho')
+  carrinho.innerHTML += ''
 
-      modelWrap = document.createElement('div')
-      modelWrap.innerHTML = 
+  modelWrap = document.createElement('div')
+  modelWrap.innerHTML =
 
-          `
+    `
           <div class="modal fade" id="modelWrap" tabindex="-1" role="dialog" aria-labelledby="carrinho" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -109,7 +109,7 @@ function processChas(data){
               <td>${nome}</td>
               <td id="Preco">${preco}$</td>
               <td> <input id="numeroDigitado" type="number"  min="1" class="form-control" value="1" onchange="TotalizacaoCompra(capturando,precoProd)" ></td>
-              <td class="price text-success" id="total">${preco+"$"}</td>
+              <td class="price text-success" id="total">${preco + "$"}</td>
               <td>
                 <a data-bs-dismiss="modal" class="btn btn-danger btn-sm">
                   <i class="fa fa-times"></i>
@@ -131,21 +131,21 @@ function processChas(data){
 
           
         `
-        document.body.append(modelWrap)
-      var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
-      modal.show()
-      }
-
-   
-   
-
-  
-function TotalizacaoCompra(){
+  document.body.append(modelWrap)
+  var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
+  modal.show()
+}
 
 
 
-  capturando = precoProd * parseInt( document.getElementById('numeroDigitado').value)
-document.getElementById('total').innerHTML = capturando.toFixed(2)+"$"
+
+
+function TotalizacaoCompra() {
+
+
+
+  capturando = precoProd * parseInt(document.getElementById('numeroDigitado').value)
+  document.getElementById('total').innerHTML = capturando.toFixed(2) + "$"
 
 }
 

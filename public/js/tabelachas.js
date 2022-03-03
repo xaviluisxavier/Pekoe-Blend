@@ -1,23 +1,23 @@
 
 
-function verChas(){
-    fetch('http://localhost:3000/chas')
+function verChas() {
+  fetch('http://localhost:3000/chas')
     .then(res => res.json())
     .then(data => processTabela(data))
-    
-    .catch((err)=>{
-        alert('Ocorreu um problema...')
-        console.log(err)
+
+    .catch((err) => {
+      alert('Ocorreu um problema...')
+      console.log(err)
     })
-  }
-  
-  
-  
-  
-      function processTabela(data){
-        console.log(data)
-        const cab = document.getElementById('cab1')
-        cab.innerHTML+=`
+}
+
+
+
+
+function processTabela(data) {
+  console.log(data)
+  const cab = document.getElementById('cab1')
+  cab.innerHTML += `
             <thead>
                 <tr>
                 <th scope="col">Cha ID</th>
@@ -28,19 +28,19 @@ function verChas(){
                 </tr>
             </thead>
         `
-        const tabela = document.getElementById('tabelachas')
-        tabela.innerHTML=''
-        for(var i=0; i<data.length;i++){
-            let chaid = data[i].chaid
-            let nome = data[i].nome
-            let preco = data[i].preco
-            let descricao = data[i].descricao
-            
-            
-            let row = `<tr>
+  const tabela = document.getElementById('tabelachas')
+  tabela.innerHTML = ''
+  for (var i = 0; i < data.length; i++) {
+    let chaid = data[i].chaid
+    let nome = data[i].nome
+    let preco = data[i].preco
+    let descricao = data[i].descricao
+
+
+    let row = `<tr>
                         <td >${chaid}</td>
                         <td >${nome}</td>
-                        <td>${preco+"$"}</td>
+                        <td>${preco + "$"}</td>
                         <td>${descricao}</td>
                         <td>
                   
@@ -50,17 +50,17 @@ function verChas(){
                       
                        </tr>
                        `
-            tabela.innerHTML += row
-        }
-    }
+    tabela.innerHTML += row
+  }
+}
 
-    function showEditarChas(id,nome,preco,desc){
-    
-        const editar = document.getElementById('editarcha')
-        editar.innerHTML+= ''
-        modelWrap = document.createElement('div')
-        modelWrap.innerHTML = 
-            `
+function showEditarChas(id, nome, preco, desc) {
+
+  const editar = document.getElementById('editarcha')
+  editar.innerHTML += ''
+  modelWrap = document.createElement('div')
+  modelWrap.innerHTML =
+    `
           <div class="modal">
                     <div class="modal-dialog modal-l">
                         <div class="modal-content">
@@ -97,8 +97,7 @@ function verChas(){
                     </div>
                     </div>
           `
-          document.body.append(modelWrap)
-        var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
-        modal.show()
-        }
-   
+  document.body.append(modelWrap)
+  var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
+  modal.show()
+}
