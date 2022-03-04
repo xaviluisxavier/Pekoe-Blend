@@ -25,7 +25,7 @@ app.use('/chas', require('./routes/getChasRoutes'))
 app.use('/tabela', require('./routes/getTabelaRoutes'))
 
 app.use(session({
-  secret: 'xavi123',
+  secret: process.env._SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { maxAge: 30 * 60 * 100 * 10 } // 30 minutos 
