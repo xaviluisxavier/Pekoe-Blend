@@ -6,17 +6,14 @@ exports.registo = function (req, res) {
    //bcrypt.hash('senha', 5, function( err, bcryptedPassword) {
 
    if (req.method == "POST") {
-      console.log(req.body.senha)
       let encPass = bcrypt.hashSync(req.body.senha, bcrypt.genSaltSync(2))
       console.log(encPass)
       var post = req.body;
       var nome = post.nome_user;
-      var pnome = post.primeiro_nome;
-      var unome = post.ultimo_nome;
       var email = post.email;
 
-      connection.query('INSERT INTO users (primeiro_nome,ultimo_nome,email,nome_user,senha) VALUES (?,?,?,?,?)',
-         [pnome, unome, email, nome, encPass],
+      connection.query('INSERT INTO users (email,nome_user,senha) VALUES (?,?,?)',
+         [email, nome, encPass],
          (error, result) => {
             if (error) throw error
             if (result) {

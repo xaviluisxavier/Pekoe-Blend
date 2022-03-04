@@ -1,86 +1,53 @@
-<html lang="en">
+
+
+
+<!DOCTYPE html>
+
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pekoe & Blend</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-    <script src=”sweetalert-dev.js”></script>
-    <link rel=”stylesheet” href=”sweetalert.css”>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
 <body>
-
-    <div class="container col-sm-12" id="mainform">
-        <div id="registro" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">Registo</div>
-                    <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink"
-                            href="/">Login</a></div>
+    <div class="wrapper">
+        <header>Registo</header>
+        <form name="registo"  role="form" method="post" >
+            <div class="field Nome user">
+                <div class="input-area">
+                    <input id="login-username" type="text" name="nome_user" value="" placeholder="Nome User" required>
+                    <i class="icon fas fa-user"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
                 </div>
-                <div class="panel-body">
-                    <form name="registo" class="form-horizontal" role="form" method="post">
 
-
-
-                        <div class="form-group">
-                            <label for="primeiro_nome" class="col-md-3 control-label">Primeiro Nome</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="primeiro_nome" placeholder="Primeiro Nome"
-                                    id="roll-input">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="ultimo_nome" class="col-md-3 control-label">Ultimo Nome</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="ultimo_nome" placeholder="Ultimo Nome">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="col-md-3 control-label">Email</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="email" placeholder="Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="nome_user" class="col-md-3 control-label">Nome user</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="nome_user" placeholder="Nome user"
-                                    required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="senha" class="col-md-3 control-label">Senha</label>
-                            <div class="col-md-9">
-                                <input type="password" class="form-control" name="senha" placeholder="Senha" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <div class="col-md-offset-3 col-md-9">
-
-                                <button id="btn-signup" type="submit" class="btn btn-success"><i
-                                        class="icon-hand-right"></i>Registar</button>
-
-                            </div>
-                        </div>
-
-
-
-
-                    </form>
+            </div>
+            <div class="field email">
+                <div class="input-area">
+                    <input id="login-email" type="text" name="email" placeholder="Email" required>
+                    <i class="icon fas fa-envelope"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
                 </div>
+
             </div>
 
+            <div class="field password">
+                <div class="input-area">
+                    <input id="login-password" type="password" name="senha" placeholder="Senha" required>
+                    <i class="icon fas fa-lock"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
 
-        </div>
+            </div>
+
+            <input type="submit" value="Registar">
+        </form>
+        <div class="sign-txt">Tem uma conta? <a href="/">Login</a></div>
     </div>
+
 
 
 </body>

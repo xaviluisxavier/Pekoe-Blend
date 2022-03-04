@@ -1,80 +1,43 @@
-<html lang="en">
+<!DOCTYPE html>
+
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pekoe & Blend</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/styles.css">
-
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 
-<body id="clrblk">
-
-    <a href="/inicio" class="logo">
-        <i class="logomarca"></i>
-    </a>
-
-    <div class="container">
-        <div id="loginbox" style="margin-top:230px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8  col-sm-offset-2">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <div class="panel-title">Login</div>
+<body>
+    <div class="wrapper">
+        <header>Login</header>
+        <form id="loginform" role="form" method="post" action="/login">
+            <div class="field email">
+                <div class="input-area">
+                    <input id="login-username" type="text" name="nome_user" value="" placeholder="Nome User">
+                    <i class="icon fas fa-user"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
                 </div>
 
-                <div style="padding-top:30px" class="panel-body">
-
-                    <form id="loginform" class="form-horizontal" role="form" method="post" action="/login">
-
-
-
-
-
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="text" class="form-control" name="nome_user" value=""
-                                placeholder="Nome User">
-                        </div>
-
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="login-password" type="password" class="form-control" name="senha"
-                                placeholder="Senha">
-                        </div>
-
-
-
-
-
-
-                        <div style="margin-top:10px" class="form-group">
-
-
-                            <div class="col-sm-12 controls">
-                                <button id="btn-login" type="submit" class="btn btn-success">Login</button>
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group">
-                            <div class="col-md-12 control">
-                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%">
-                                    Nao tens uma conta?
-                                    <a href="/registo">
-                                        Registe-se aqui
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-
-
-                </div>
             </div>
-        </div>
+            <div class="field password">
+                <div class="input-area">
+                    <input id="login-password" type="password" name="senha" placeholder="Senha">
+                    <i class="icon fas fa-lock"></i>
+                    <i class="error error-icon fas fa-exclamation-circle"></i>
+                </div>
 
+            </div>
+
+            <input type="submit" value="Login">
+        </form>
+        <div class="sign-txt">Nao tem uma conta? <a href="/registo">Registar-se</a></div>
     </div>
+
+
+
 </body>
 
 </html>
