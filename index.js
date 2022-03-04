@@ -1,5 +1,4 @@
 const express = require('express')
-  , routes = require('./routes')
   , user = require('./routes/user')
   , bodyParser = require('body-parser')
   , path = require('path')
