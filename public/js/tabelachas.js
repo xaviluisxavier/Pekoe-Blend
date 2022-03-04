@@ -45,7 +45,7 @@ function processTabela(data) {
                         <td>
                   
                         <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
-                      <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                      <button onclick="removerCha()" "type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
                       
                        </tr>
@@ -72,20 +72,19 @@ function showEditarChas(id, nome, preco, desc) {
                         
                           <div class="form-group col-md-6">
                             <label for="nomecha">Nome do Chá</label>
-                            <input type="nomecha" class="form-control" id="nomecha" placeholder="Nome">
-                            
+                            <textarea type="nomecha" class="form-control" id="nomecha">${nome}</textarea>
                           </div>
 
                           <div class="form-group col-md-6">
                             <label for="preco">Preço</label>
-                            <input type="preco" class="form-control" id="preco" placeholder="Preço">
+                            <textarea type="preco" class="form-control" id="preco">${preco}</textarea>
                        
                           </div>
                        
 
                         <div class="form-group col-md-12">
                         <label for="descricao">Descrição</label>
-                        <textarea class="form-control" id="descricao">${desc}</textarea>
+                        <textarea type="descricao" class="form-control" id="descricao">${desc}</textarea>
                       </div>
                         
                       </form>
@@ -100,4 +99,9 @@ function showEditarChas(id, nome, preco, desc) {
   document.body.append(modelWrap)
   var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
   modal.show()
+}
+
+
+function removerCha(){
+  
 }

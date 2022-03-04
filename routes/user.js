@@ -3,11 +3,10 @@ var bcrypt = require('bcryptjs');
 
 //---------------------------------------------Registo------------------------------------------------------
 exports.registo = function (req, res) {
-   //bcrypt.hash('senha', 5, function( err, bcryptedPassword) {
+
 
    if (req.method == "POST") {
       let encPass = bcrypt.hashSync(req.body.senha, bcrypt.genSaltSync(2))
-      console.log(encPass)
       var post = req.body;
       var nome = post.nome_user;
       var email = post.email;
@@ -42,7 +41,7 @@ exports.login = function (req, res) {
             let user = result[0]
             if (error) throw error
             if (!user || !bcrypt.compareSync(senha, user.senha)) {
-
+                
                res.render('login.html');
             }
             else {
@@ -71,7 +70,6 @@ exports.dashboard = function (req, res, next) {
       res.redirect("/home/dashboard");
       return;
    }
-
 
 
    connection.query('SELECT * FROM users WHERE id = ?', [userId],

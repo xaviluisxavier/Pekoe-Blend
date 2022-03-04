@@ -141,3 +141,9 @@ form input[type="submit"]{
 form input[type="submit"]:hover{
   background: #2DA125;
 }
+
+#imgpos {
+	position: absolute; 
+	left: 50px; 
+	top: 40px; 
+	}

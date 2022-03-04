@@ -71,8 +71,19 @@ function showEditarUsers(id, nome, email) {
                   <div class="modal-header">
                       <h5 class="modal-title">Editar o User com o id: ${id}</h5>
                   </div>
+
                   <div class="modal-body" ">
-                  
+
+                  <div class="form-group col-md-6">
+                  <label for="nomeuser">Nome do User</label>
+                  <textarea type="nomeuser" class="form-control" id="nomeuser">${nome}</textarea>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="preco">Email</label>
+                  <textarea type="email" class="form-control" id="email">${email}</textarea>
+                </div>
+             
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
