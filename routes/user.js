@@ -44,6 +44,7 @@ exports.login = function (req, res) {
                 
                res.render('login.html');
             }
+            
             else {
 
                req.session.userId = result[0].id;

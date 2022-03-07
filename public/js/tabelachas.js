@@ -23,6 +23,7 @@ function processTabela(data) {
                 <th scope="col">Cha ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Preco</th>
+                <th scope="col">Stock</th>
                 <th scope="col">Descrição</th>
                 <th scope="col">Ações</th>
                 </tr>
@@ -34,6 +35,7 @@ function processTabela(data) {
     let chaid = data[i].chaid
     let nome = data[i].nome
     let preco = data[i].preco
+    let stock = data[i].stock
     let descricao = data[i].descricao
 
 
@@ -41,10 +43,11 @@ function processTabela(data) {
                         <td >${chaid}</td>
                         <td >${nome}</td>
                         <td>${preco + "$"}</td>
+                        <td >${stock}</td>
                         <td>${descricao}</td>
                         <td>
                   
-                        <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                        <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].stock}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
                       <button onclick="removerCha()" "type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
                       
@@ -54,7 +57,7 @@ function processTabela(data) {
   }
 }
 
-function showEditarChas(id, nome, preco, desc) {
+function showEditarChas(id, nome, preco, stock, desc) {
 
   const editar = document.getElementById('editarcha')
   editar.innerHTML += ''
@@ -70,14 +73,19 @@ function showEditarChas(id, nome, preco, desc) {
                         <div class="modal-body" ">
                         <form>
                         
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-4">
                             <label for="nomecha">Nome do Chá</label>
                             <textarea type="nomecha" class="form-control" id="nomecha">${nome}</textarea>
                           </div>
 
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-4">
                             <label for="preco">Preço</label>
                             <textarea type="preco" class="form-control" id="preco">${preco}</textarea>
+                       
+                          </div>
+                          <div class="form-group col-md-4">
+                            <label for="preco">Stock</label>
+                            <textarea type="sotck" class="form-control" id="stock">${stock}</textarea>
                        
                           </div>
                        
@@ -90,7 +98,10 @@ function showEditarChas(id, nome, preco, desc) {
                       </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                            <button
+                            onclick="confirmarEditCha(${id},'${nome}')"
+                            type="button" class="btn btn-success" >Confirmar</button>
                         </div>
                         </div>
                     </div>
@@ -102,6 +113,12 @@ function showEditarChas(id, nome, preco, desc) {
 }
 
 
-function removerCha(){
-  
+function removerCha() {
+
+}
+
+
+function confirmarEditCha(id,nomecha){
+  console.log(id)
+  console.log(nomecha)
 }

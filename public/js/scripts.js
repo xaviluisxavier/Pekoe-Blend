@@ -124,7 +124,7 @@ function adicionarCarrinho(nome, preco, imagem) {
       </div>
       <div class="modal-footer border-top-0 d-flex justify-content-between">
       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-success" onclick="checkout()">Comprar</button>
+        <button type="button" class="btn btn-success" >Comprar</button>
       </div>
     </div>
   </div>
