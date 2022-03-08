@@ -1,61 +1,59 @@
 
+function processTabela() {
 
-function verChas() {
   fetch('http://localhost:3000/chas')
     .then(res => res.json())
-    .then(data => processTabela(data))
+    .then(data => {
+      console.log(data)
+      cab = document.getElementById('cab1')
+      cab.innerHTML += `
+                <thead>
+                    <tr>
+                    <th scope="col">Cha ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preco</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+            `
+      const tabela = document.getElementById('tabelachas')
+      tabela.innerHTML = ''
+      for (var i = 0; i < data.length; i++) {
+        let chaid = data[i].chaid
+        let nome = data[i].nome
+        let preco = data[i].preco
+        let stock = data[i].stock
+        let descricao = data[i].descricao
+
+
+        let row = `<tr>
+                            <td >${chaid}</td>
+                            <td >${nome}</td>
+                            <td>${preco + "$"}</td>
+                            <td >${stock}</td>
+                            <td>${descricao}</td>
+                            <td>
+                      
+                            <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].stock}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+                          <button onclick="removerCha('${id}')" "type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                </td>
+                          
+                           </tr>
+                           `
+        tabela.innerHTML += row
+      }
+    })
 
     .catch((err) => {
       alert('Ocorreu um problema...')
       console.log(err)
     })
+
+
 }
 
-
-
-
-function processTabela(data) {
-  console.log(data)
-  const cab = document.getElementById('cab1')
-  cab.innerHTML += `
-            <thead>
-                <tr>
-                <th scope="col">Cha ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Preco</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Descrição</th>
-                <th scope="col">Ações</th>
-                </tr>
-            </thead>
-        `
-  const tabela = document.getElementById('tabelachas')
-  tabela.innerHTML = ''
-  for (var i = 0; i < data.length; i++) {
-    let chaid = data[i].chaid
-    let nome = data[i].nome
-    let preco = data[i].preco
-    let stock = data[i].stock
-    let descricao = data[i].descricao
-
-
-    let row = `<tr>
-                        <td >${chaid}</td>
-                        <td >${nome}</td>
-                        <td>${preco + "$"}</td>
-                        <td >${stock}</td>
-                        <td>${descricao}</td>
-                        <td>
-                  
-                        <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].stock}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
-                      <button onclick="removerCha()" "type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-            </td>
-                      
-                       </tr>
-                       `
-    tabela.innerHTML += row
-  }
-}
 
 function showEditarChas(id, nome, preco, stock, desc) {
 
@@ -100,7 +98,7 @@ function showEditarChas(id, nome, preco, stock, desc) {
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                             <button
-                            onclick="confirmarEditCha(${id},'${nome}')"
+                            onclick="confirmarEditCha('${id}')"
                             type="button" class="btn btn-success" >Confirmar</button>
                         </div>
                         </div>
@@ -110,15 +108,50 @@ function showEditarChas(id, nome, preco, stock, desc) {
   document.body.append(modelWrap)
   var modal = new bootstrap.Modal(modelWrap.querySelector('.modal'))
   modal.show()
+
+
 }
 
 
 function removerCha() {
-
+  
 }
 
 
-function confirmarEditCha(id,nomecha){
-  console.log(id)
-  console.log(nomecha)
+
+
+function confirmarEditCha(id) {
+  const nome = document.getElementById('nomecha').value
+  const preco = document.getElementById('preco').value
+  const stock = document.getElementById('stock').value
+  const descricao = document.getElementById('descricao').value
+
+  const obj = {
+    chaid: id,
+    nome: nome,
+    preco: preco,
+    stock: stock,
+    descricao: descricao
+  }
+  console.log(obj)
+  jsonObj = JSON.stringify(obj)
+
+
+  var options = {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: jsonObj
+  }
+
+
+  fetch('http://localhost:3000/update', options)
+    .then(res => res.json())
+    .then(data => alert('Chá alterádo com sucesso!'))
+    .catch((err) => {
+      console.log('Request failed', err.msg)
+    });
 }
+
+

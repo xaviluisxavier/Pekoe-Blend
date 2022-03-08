@@ -22,8 +22,9 @@ app.use(express.static('./public'))
 
 
 app.use('/chas', require('./routes/getChasRoutes'))
-app.use('/tabela', require('./routes/getTabelaRoutes'))
+app.use('/users', require('./routes/getTabelaRoutes'))
 app.use('/update', require('./routes/updateChasRoutes'))
+app.use('/updateuser', require('./routes/updateUserRoutes'))
 app.use('/remove', require('./routes/removeChasRoutes'))
 
 app.use(session({
