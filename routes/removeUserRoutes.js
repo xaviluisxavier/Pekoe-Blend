@@ -1,10 +1,10 @@
 const express = require('express')
-const removeChasRouter = express.Router()
+const removeUserRouter = express.Router()
 const connection = require('../public/js/dbconnection')
 
-removeChasRouter.delete('/', (req, res) => {
-    connection.query('DELETE FROM chasportoformoso  WHERE chaid = ?', 
-    [parseInt(req.body.chaid)],
+removeUserRouter.delete('/', (req, res) => {
+    connection.query('DELETE FROM users  WHERE id = ?', 
+    [parseInt(req.body.id)],
     (err, result,) => {
         if (err) {
             console.log('erro')
@@ -17,4 +17,4 @@ removeChasRouter.delete('/', (req, res) => {
 
 
 
-module.exports = removeChasRouter
+module.exports = removeUserRouter

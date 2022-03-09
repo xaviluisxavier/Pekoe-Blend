@@ -22,10 +22,13 @@ app.use(express.static('./public'))
 
 
 app.use('/chas', require('./routes/getChasRoutes'))
+app.use('/adicionarchas', require('./routes/addChasRoutes'))
 app.use('/users', require('./routes/getTabelaRoutes'))
 app.use('/update', require('./routes/updateChasRoutes'))
 app.use('/updateuser', require('./routes/updateUserRoutes'))
 app.use('/remove', require('./routes/removeChasRoutes'))
+app.use('/removeuser', require('./routes/removeUserRoutes'))
+
 
 app.use(session({
   secret: process.env._SECRET,
