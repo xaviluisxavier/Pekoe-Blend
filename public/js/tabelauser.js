@@ -2,7 +2,7 @@ function processTabelaUser() {
   fetch('http://localhost:3000/users')
     .then(res => res.json())
     .then(data => {
-      console.log(data)
+      
       cab = document.getElementById('cab')
       cab.innerHTML += `
      <thead>
@@ -33,7 +33,7 @@ function processTabelaUser() {
                     <td>
                     <button onclick="showEditarUsers('${data[i].id}','${data[i].nome_user}','${data[i].email}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
               
-            <button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+            <button type="button" onclick="removerUser('${data[i].id}','${data[i].nome_user}','${data[i].email}','${data[i].senha}'),setInterval('atualizar()',500)"class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
             </td>
           
                    </tr>
@@ -82,7 +82,7 @@ function showEditarUsers(id, nome, email) {
                   <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                   <button 
-                  onclick="confirmarEditUser('${id}')"
+                  onclick="confirmarEditUser('${id}'),setInterval('atualizar()',1000)"
                   type="button" class="btn btn-success" >Confirmar</button>
                   </div>
                   </div>
@@ -95,9 +95,12 @@ function showEditarUsers(id, nome, email) {
 }
 
 
+function atualizar(){
+  window.location.reload();
+}
 
 
-function confirmarEditUser(id) {
+function confirmarEditUser(id,senha) {
   const nome_user = document.getElementById('nomeuser').value
   const email = document.getElementById('email').value
 
@@ -129,5 +132,34 @@ function confirmarEditUser(id) {
     });
 }
 
+function removerUser(id, nome_user, email, senha) {
+
+
+  const obj = {
+    id: id,
+    nome: nome_user,
+    email: email,
+    senha: senha
+  }
+  jsonObj = JSON.stringify(obj)
+
+
+  var options = {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: jsonObj
+  }
+
+
+  fetch('http://localhost:3000/removeuser', options)
+    .then(res => res.json())
+    .then(data => alert('User removido com sucesso!'))
+
+    .catch((err) => {
+      console.log('Request failed', err.msg)
+    });
+}
 
 

@@ -14,12 +14,12 @@ function verchas() {
 
 
 function processChas(data) {
-  console.log(data)
+  
   const cha = document.getElementById('cha')
   cha.innerHTML += ''
   for (var i = 0; i < data.length; i++) {
     let nome = data[i].nome
-    let preco = data[i].preco + "$"
+    let preco = data[i].preco + " €"
     let imagem = data[i].imagem
     let stock = data[i].stock
 
@@ -109,7 +109,7 @@ function adicionarCarrinho(nome, preco, imagem) {
               <td>${nome}</td>
               <td id="Preco">${preco}$</td>
               <td> <input id="numeroDigitado" type="number"  min="1" class="form-control" value="1" onchange="TotalizacaoCompra(capturando,precoProd)" ></td>
-              <td class="price text-success" id="total">${preco + "$"}</td>
+              <td class="price text-success" id="total">${preco + "€"}</td>
               <td>
                 <a data-bs-dismiss="modal" class="btn btn-danger btn-sm">
                   <i class="fa fa-times"></i>
@@ -145,7 +145,7 @@ function TotalizacaoCompra() {
 
 
   capturando = precoProd * parseInt(document.getElementById('numeroDigitado').value)
-  document.getElementById('total').innerHTML = capturando.toFixed(2) + "$"
+  document.getElementById('total').innerHTML = capturando.toFixed(2) + "€"
 
 }
 
