@@ -1,8 +1,8 @@
 const express = require('express')
-const getTabelaRouter = express.Router()
+const getUserRouter = express.Router()
 const connection = require('../public/js/dbconnection')
 
-getTabelaRouter.get('/', (req, res) => {
+getUserRouter.get('/', (req, res) => {
     connection.query('SELECT * from  users', (err, result,) => {
         if (err) {
             console.log('erro')
@@ -17,5 +17,5 @@ getTabelaRouter.get('/', (req, res) => {
 
 
 
-module.exports = getTabelaRouter
+module.exports = getUserRouter
 

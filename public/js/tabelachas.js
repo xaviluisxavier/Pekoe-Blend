@@ -4,7 +4,7 @@ function processTabela() {
   fetch('http://localhost:3000/chas')
     .then(res => res.json())
     .then(data => {
-      
+
       cab = document.getElementById('cab1')
       cab.innerHTML += `
                 <thead>
@@ -33,7 +33,7 @@ function processTabela() {
         let preco = data[i].preco
         let stock = data[i].stock
         let descricao = data[i].descricao
-        
+
 
 
         let row = `<tr>
@@ -62,7 +62,7 @@ function processTabela() {
 
 
 }
-function adicionarChas(){
+function adicionarChas() {
   const editar = document.getElementById('editarcha')
   editar.innerHTML += ''
   modelWrap = document.createElement('div')
@@ -79,29 +79,34 @@ function adicionarChas(){
 
                         <div class="form-group col-md-4">
                             <label for="nomecha">Id do chá</label>
-                            <textarea type="chaid" class="form-control" id="chaid"></textarea>
+                            <textarea type="chaid" class="form-control" id="chaid" ></textarea>
                           </div>
                         
                           <div class="form-group col-md-4">
                             <label for="nomecha">Nome do Chá</label>
-                            <textarea type="nomecha" class="form-control" id="nomecha"></textarea>
+                            <textarea type="nomecha" class="form-control" id="nomecha" ></textarea>
                           </div>
 
                           <div class="form-group col-md-4">
                             <label for="preco">Preço</label>
-                            <textarea type="preco" class="form-control" id="preco"></textarea>
+                            <textarea type="preco" class="form-control" id="preco" ></textarea>
                        
                           </div>
                           <div class="form-group col-md-4">
                             <label for="preco">Stock</label>
-                            <textarea type="sotck" class="form-control" id="stock"></textarea>
+                            <textarea type="stock" class="form-control" id="stock" ></textarea>
                        
+                          </div>
+
+                          <div class="form-group col-md-8">
+                           <label for="foto">Escolher Imagem</label>
+                           <input class="form-control" type="file" id="foto">
                           </div>
                        
 
-                        <div class="form-group col-md-8">
+                        <div class="form-group col-md-12">
                         <label for="descricao">Descrição</label>
-                        <textarea type="descricao" class="form-control" id="descricao"></textarea>
+                        <textarea type="descricao" class="form-control" id="descricao" ></textarea>
                       </div>
 
                       
@@ -125,22 +130,12 @@ function adicionarChas(){
 
 }
 
-function confirmarAddCha(){
+function confirmarAddCha() {
   const chaid = document.getElementById('chaid').value
-  if(chaid=='')
-  alert('Tem de preencher o id do chá.')
   const nome = document.getElementById('nomecha').value
-  if(nome=='')
-  alert('Tem de preencher o nome.')
   const preco = document.getElementById('preco').value
-  if(preco=='')
-  alert('Tem de preencher o preço.')
   const stock = document.getElementById('stock').value
-  if(stock=='')
-  alert('Tem de preencher o stock.')
   const descricao = document.getElementById('descricao').value
-  if(descricao=='')
-  alert('Tem de preencher a descrição.')
 
 
   const obj = {
@@ -203,11 +198,16 @@ function showEditarChas(id, nome, preco, stock, desc) {
                        
                           </div>
                        
-
                         <div class="form-group col-md-12">
                         <label for="descricao">Descrição</label>
                         <textarea type="descricao" class="form-control" id="descricao">${desc}</textarea>
                       </div>
+
+                      <div class="form-group col-md-8">
+                      <label for="foto">Imagem do chá</label>
+                      <input class="form-control" type="file" id="foto">
+                     </div>
+
                         
                       </form>
                         </div>

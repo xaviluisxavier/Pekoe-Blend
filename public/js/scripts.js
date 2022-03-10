@@ -1,10 +1,38 @@
 var capturando = 0.0;
 let precoProd = 0.0;
 
-function verchas() {
+function processChas() {
   fetch('http://localhost:3000/chas')
     .then(res => res.json())
-    .then(data => processChas(data))
+    .then(data => {
+
+
+      const cha = document.getElementById('cha')
+      cha.innerHTML += ''
+      for (var i = 0; i < data.length; i++) {
+        let nome = data[i].nome
+        let preco = data[i].preco + " €"
+        let imagem = data[i].imagem
+        let stock = data[i].stock
+
+
+        let row = `
+          <div class="card">
+          <img src="${imagem}" alt="" width="400" height="266">
+          <h1>${nome}</h1>
+          <p class="price">${preco}</p>
+          
+          <p><button onclick="adicionarCarrinho('${data[i].nome}','${data[i].preco}','${data[i].imagem}')"type="button" data-toggle="modal" data-target="#cartModal" >Comprar</button></p>
+          
+          
+          <button onclick="showDetail('${data[i].descricao}','${data[i].stock}','${data[i].nome}')" type="button" class="price" data-toggle="modal" data-target="#myModal">Detalhe</button>   
+        </div>
+        
+          
+         `
+        cha.innerHTML += row
+      }
+    })
     .catch((err) => {
       alert('Ocorreu um problema...')
       console.log(err)
@@ -13,34 +41,7 @@ function verchas() {
 
 
 
-function processChas(data) {
-  
-  const cha = document.getElementById('cha')
-  cha.innerHTML += ''
-  for (var i = 0; i < data.length; i++) {
-    let nome = data[i].nome
-    let preco = data[i].preco + " €"
-    let imagem = data[i].imagem
-    let stock = data[i].stock
 
-
-    let row = `
-    <div class="card">
-    <img src="${imagem}" alt="" width="400" height="266">
-    <h1>${nome}</h1>
-    <p class="price">${preco}</p>
-    
-    <p><button onclick="adicionarCarrinho('${data[i].nome}','${data[i].preco}','${data[i].imagem}')"type="button" data-toggle="modal" data-target="#cartModal" >Comprar</button></p>
-    
-    
-    <button onclick="showDetail('${data[i].descricao}','${data[i].stock}','${data[i].nome}')" type="button" class="price" data-toggle="modal" data-target="#myModal">Detalhe</button>   
-  </div>
-  
-    
-   `
-    cha.innerHTML += row
-  }
-}
 
 
 function showDetail(desc, stock, nome) {
