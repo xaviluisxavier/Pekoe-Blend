@@ -96,12 +96,12 @@ function adicionarCarrinho(nome, preco, imagem) {
         <table class="table table-image">
           <thead>
             <tr>
-              <th scope="col">Imagem</th>
-              <th scope="col">Produto</th>
-              <th scope="col">Preço</th>
-              <th scope="col">Quantidade</th>
-              <th scope="col">Total</th>
-              <th scope="col">Ações</th>
+              <th>Imagem</th>
+              <th>Produto</th>
+              <th>Preço</th>
+              <th>Quantidade</th>
+              <th>Total</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>

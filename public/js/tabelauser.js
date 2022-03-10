@@ -7,10 +7,10 @@ function processTabelaUser() {
       cab.innerHTML += `
      <thead>
      <tr>
-     <th scope="col">User ID</th>
-       <th scope="col">Nome User</th>
-       <th scope="col">Email</th>
-       <th scope="col">Ações</th>
+     <th>User ID</th>
+       <th>Nome User</th>
+       <th>Email</th>
+       <th>Ações</th>
  
      </tr>
    </thead>
@@ -118,7 +118,7 @@ function confirmarEditUser(id,senha) {
   var options = {
     method: 'PUT',
     headers: {
-      'Content-type': 'application/json'
+      'Accept': 'application/json'
     },
     body: jsonObj
   }
@@ -147,7 +147,7 @@ function removerUser(id, nome_user, email, senha) {
   var options = {
     method: 'DELETE',
     headers: {
-      'Content-type': 'application/json'
+      'Accept': 'application/json'
     },
     body: jsonObj
   }

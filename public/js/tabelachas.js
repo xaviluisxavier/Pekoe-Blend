@@ -11,12 +11,13 @@ function processTabela() {
                
                     <tr>
 
-                    <th scope="col">Cha ID</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Preco</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Descrição</th>
-                    <th scope="col"> 
+                    <th>Cha ID</th>
+                    <th>Nome</th>
+                    <th>Preco</th>
+                    <th>Stock</th>
+                    <th>Descrição</th> 
+                    <th>Imagens</th>
+                    <th>
                     <button type="button" onclick="adicionarChas()" class="btn btn-success">
                     <span class="glyphicon glyphicon-plus"></span>
                     </button>
@@ -33,7 +34,7 @@ function processTabela() {
         let preco = data[i].preco
         let stock = data[i].stock
         let descricao = data[i].descricao
-
+        let imagem = data[i].imagem
 
 
         let row = `<tr>
@@ -42,7 +43,7 @@ function processTabela() {
                             <td>${preco + "$"}</td>
                             <td >${stock}</td>
                             <td>${descricao}</td>
-                            
+                            <td>${imagem}</td>
                             <td>
                       
                             <button onclick="showEditarChas('${data[i].chaid}','${data[i].nome}','${data[i].preco}','${data[i].stock}','${data[i].descricao}')" type="button" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
@@ -131,6 +132,7 @@ function adicionarChas() {
 }
 
 function confirmarAddCha() {
+  const imagem = document.getElementById('foto').files[0]
   const chaid = document.getElementById('chaid').value
   const nome = document.getElementById('nomecha').value
   const preco = document.getElementById('preco').value
@@ -143,7 +145,8 @@ function confirmarAddCha() {
     nome: nome,
     preco: preco,
     stock: stock,
-    descricao: descricao
+    descricao: descricao,
+    imagem: imagem
   }
   console.log(obj)
   jsonObj = JSON.stringify(obj)

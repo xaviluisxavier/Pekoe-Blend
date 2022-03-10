@@ -18,6 +18,7 @@ exports.registo = function (req, res) {
             if (result) {
                res.render('login')
             }
+            
          })
    } else {
       res.render('registo');
@@ -41,10 +42,10 @@ exports.login = function (req, res) {
             let user = result[0]
             if (error) throw error
             if (!user || !bcrypt.compareSync(senha, user.senha)) {
-                
                res.render('login.html');
+              
             }
-            
+
             else {
 
                req.session.userId = result[0].id;
