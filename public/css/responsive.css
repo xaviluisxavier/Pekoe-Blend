@@ -19,12 +19,16 @@
     .center{
         width: 768px;
     }
+   #cha{
+       padding-left: 100px;
+   }
    
 }
 @media only screen and (max-width: 768px){
     .center{
         width: 640px;
     }
+    
     
 }
 @media only screen and (max-width: 640px){
@@ -38,8 +42,5 @@
       
     }
     
-.card {
-    
-    margin-right: 100px;
-}
+
 }
