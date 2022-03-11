@@ -453,49 +453,7 @@ border-top-right-radius: 8px;
     background:#2DA125;
     opacity: 1;
 }
-.novidades{
-    padding-top: 100px;
-}
-.novidades-box{
-    background: url("../imagens/novidades.png")0 0 no-repeat;
-    height: 300px;
-    overflow: hidden;
-    border-radius: 8px;
-}
-.novidades-wrapper{
-    padding: 145px;
-    text-align: center;
 
-}
-.novidades-texto{
-    color: #ffffff;
-    font-size: 20px;
-    line-height: 24px;
-    float: left;
-    padding-right: 80px;
-    text-align: left;
-}
-.novidades-form{
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    position: relative;
-    float: left;
-    width: 380px;
-    text-align: left;
-}
-.novidades-input{
-    background: none;
-    border: none;
-    color:#ffffff;
-    padding: 10px 50px 10px 10px;
-    text-size-adjust: 10px;
-    padding-top: 10px;
-
-}
-.novidades-contuedo{
-    display: inline-block;
-
-}
 ::-webkit-input-placeholder { 
     color: #ffffff;
     font-size: 16px;
@@ -512,26 +470,8 @@ border-top-right-radius: 8px;
     color: #ffffff;
     font-size: 16px;
   }
-  .novidades-submit{
-      background: url(../imagens/novidades-submit.png) 0 0 no-repeat;
-      width: 34px;
-      height: 34px;
-      border: none;
-
-  }
-
-  .novidades-box-submit{
-position: absolute;
-
-right: 15px;
-top: 13px;
-border-left: 1px solid #ffffff;
-padding-left: 10px;
-  }
-  .novidades-input-box{
-      padding: 18px 100px 10px 18px;
-  }
-
+ 
+  
   .footer{
       padding-top: 30px;
   }

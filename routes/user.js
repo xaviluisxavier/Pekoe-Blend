@@ -51,7 +51,7 @@ exports.login = function (req, res) {
                req.session.userId = result[0].id;
                req.session.user = result[0];
                console.log(result[0].id);
-               res.redirect('/home');
+               res.redirect('/inicio');
 
             }
 
@@ -69,7 +69,7 @@ exports.dashboard = function (req, res, next) {
    var user = req.session.user,
       userId = req.session.userId;
    if (userId == null) {
-      res.redirect("/home/dashboard");
+      res.redirect("/dashboard");
       return;
    }
 
@@ -82,7 +82,7 @@ exports.dashboard = function (req, res, next) {
 //------------------------------------Logout----------------------------------------------
 exports.logout = function (req, res) {
    req.session.destroy(function (err) {
-      res.redirect("/inicio");
+      res.redirect("/");
    })
 };
 //--------------------------------Route para a pagina Compra--------------------------------
@@ -90,7 +90,7 @@ exports.comprar = function (req, res) {
 
    var userId = req.session.userId;
    if (userId == null) {
-      res.redirect("/home/comprar");
+      res.redirect("/comprar");
       return;
    }
 
@@ -105,7 +105,7 @@ exports.contacto = function (req, res) {
 
    var userId = req.session.userId;
    if (userId == null) {
-      res.redirect("/home/contacto");
+      res.redirect("/contacto");
       return;
    }
 
@@ -122,7 +122,7 @@ exports.home = function (req, res) {
 
    var userId = req.session.userId;
    if (userId == null) {
-      res.redirect("/home");
+      res.redirect("/inicio");
       return;
    }
    connection.query('SELECT * FROM users WHERE id = ?', [userId],

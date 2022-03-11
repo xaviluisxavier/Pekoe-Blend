@@ -100,8 +100,8 @@ function adicionarChas() {
                           </div>
 
                           <div class="form-group col-md-8">
-                           <label for="foto">Escolher Imagem</label>
-                           <input class="form-control" type="file" id="foto">
+                           <label for="imagem">Escolher Imagem</label>
+                           <input class="form-control" type="file" id="imagem">
                           </div>
                        
 
@@ -132,7 +132,7 @@ function adicionarChas() {
 }
 
 function confirmarAddCha() {
-  const imagem = document.getElementById('foto').files[0]
+ 
   const chaid = document.getElementById('chaid').value
   const nome = document.getElementById('nomecha').value
   const preco = document.getElementById('preco').value
@@ -146,7 +146,7 @@ function confirmarAddCha() {
     preco: preco,
     stock: stock,
     descricao: descricao,
-    imagem: imagem
+    
   }
   console.log(obj)
   jsonObj = JSON.stringify(obj)

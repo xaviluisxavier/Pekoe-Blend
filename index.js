@@ -4,8 +4,6 @@ const express = require('express')
   , path = require('path')
   , app = express()
   , port = 3000
-  , http = require('http')
-  , connection = require('./public/js/dbconnection')
   , cons = require('consolidate')
   , session = require('express-session');
 require('dotenv').config()
@@ -37,28 +35,23 @@ app.use(session({
   cookie: { maxAge: 30 * 60 * 100 * 10 } // 30 minutos 
 }))
 
-app.get('/', user.login);
+app.get('/login', user.login);
 app.post('/login', user.login);
+
 app.get('/registo', user.registo);
 app.post('/registo', user.registo);
-app.get('/home', user.home);
-app.get('/home/logout', user.logout);
-app.get('/home/comprar', user.comprar);
-app.get('/home/contacto', user.contacto);
-app.get('/home/dashboard', user.dashboard);
+
+app.get('/inicio', user.home);
+app.get('/logout', user.logout);
+app.get('/comprar', user.comprar);
+app.get('/contacto', user.contacto);
+app.get('/dashboard', user.dashboard);
 
 
 
-app.get('/inicio', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './public/views/index.html'))
 })
-
-
-
-
-
-
-
 
 
 

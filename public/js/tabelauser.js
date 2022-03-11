@@ -118,7 +118,7 @@ function confirmarEditUser(id,senha) {
   var options = {
     method: 'PUT',
     headers: {
-      'Accept': 'application/json'
+      'Content-Type': 'application/json'
     },
     body: jsonObj
   }
@@ -147,7 +147,7 @@ function removerUser(id, nome_user, email, senha) {
   var options = {
     method: 'DELETE',
     headers: {
-      'Accept': 'application/json'
+      'Content-type': 'application/json'
     },
     body: jsonObj
   }
