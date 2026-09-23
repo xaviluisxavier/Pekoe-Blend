@@ -20,10 +20,15 @@ app.use(express.static('./public'));
 
 // 3. INICIAR A SESSÃO
 app.use(session({
-  secret: process.env._SECRET || 'chave-secreta-segura',
+  secret: process.env._SECRET,
   resave: false,
   saveUninitialized: true,
-  cookie: { maxAge: 30 * 60 * 100 * 10 } // 30 minutos 
+  cookie: {
+        httpOnly: true,  
+        sameSite: 'strict', 
+        secure: false, 
+        maxAge: 1000 * 60 * 60 * 24 
+    } 
 }));
 
 // 4. O MIDDLEWARE
