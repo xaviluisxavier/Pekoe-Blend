@@ -1,5 +1,5 @@
 function processEncomendas() {
-    fetch('http://localhost:3000/encomendas')
+    fetch('/encomendas')
       .then(res => res.json())
       .then(data => {
         const tabela = document.getElementById('tabelaEncomendas');
@@ -63,7 +63,7 @@ function processEncomendas() {
 function alterarEstado(id, novoEstado) {
     if (!novoEstado) return;
 
-    fetch('http://localhost:3000/updateestado', {
+    fetch('/updateestado', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id: id, estado: novoEstado })
