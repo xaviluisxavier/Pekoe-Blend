@@ -1,7 +1,7 @@
 let carrinho = JSON.parse(localStorage.getItem('carrinho_pekoe')) || [];
 
 function processChas() {
-  fetch('http://localhost:3000/chas')
+  fetch('/chas')
     .then(res => res.json())
     .then(data => {
       const cha = document.getElementById('cha');
@@ -156,7 +156,7 @@ function finalizarCompra() {
       pagamento: pagamento
   };
 
-  fetch('http://localhost:3000/efetuarCompra', {
+  fetch('/efetuarCompra', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dados)
