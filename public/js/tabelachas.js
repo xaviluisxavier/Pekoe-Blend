@@ -1,5 +1,5 @@
 function processTabela() {
-  fetch('http://localhost:3000/chas')
+  fetch('/chas')
     .then(res => res.json())
     .then(data => {
 
@@ -152,10 +152,9 @@ function confirmarAddCha() {
       formData.append('imagem', imagemInput.files[0]);
   }
 
-  fetch('http://localhost:3000/adicionarchas', { method: 'POST', body: formData })
+  fetch('/adicionarchas', { method: 'POST', body: formData })
     .then(res => res.json())
     .then(data => {
-        // AGORA VERIFICA SE DEU ERRO!
         if (data.erro) {
             Swal.fire({ icon: 'error', title: 'Erro', text: data.erro });
         } else {
@@ -291,7 +290,7 @@ function confirmarEditCha(id) {
     body: formData
   };
 
-  fetch('http://localhost:3000/update', options)
+  fetch('/update', options)
     .then(res => res.json())
     .then(data => alert('Chá alterado com sucesso!'))
     .catch((err) => {
