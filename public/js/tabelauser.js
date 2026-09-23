@@ -1,5 +1,5 @@
 function processTabelaUser() {
-  fetch('http://localhost:3000/users')
+  fetch('/users')
     .then(res => res.json())
     .then(data => {
       
@@ -124,7 +124,7 @@ function confirmarEditUser(id,senha) {
   }
 
 
-  fetch('http://localhost:3000/updateuser', options)
+  fetch('/updateuser', options)
     .then(res => res.json())
     .then(data => alert('User alterádo com sucesso!'))
     .catch((err) => {
@@ -153,7 +153,7 @@ function removerUser(id, nome_user, email, senha) {
   }
 
 
-  fetch('http://localhost:3000/removeuser', options)
+  fetch('/removeuser', options)
     .then(res => res.json())
     .then(data => alert('User removido com sucesso!'))
 
